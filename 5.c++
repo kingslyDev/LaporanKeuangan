@@ -44,28 +44,29 @@ public:
     }
 
     void tampilkanLaporan() {
-        ifstream file("transaksi.txt");
-        if (file.is_open()) {
-            cout << "=========== LAPORAN KEUANGAN ===========" << endl;
-            cout << "Saldo saat ini: " << fixed << setprecision(2) << saldo << endl;
-            cout << "---------------------------------------" << endl;
-            cout << setw(15) << "Jenis" << setw(40) << "Jumlah" << setw(40) << "Keterangan" << endl;
-            cout << "---------------------------------------" << endl;
+    ifstream file("transaksi.txt");
+    if (file.is_open()) {
+        cout << "========================LAPORAN KEUANGAN ========================" << endl;
+        cout << "Saldo saat ini: " << fixed << setprecision(2) << saldo << endl;
+        cout << "-------------------------------------------------" << endl;
+        cout << setw(15) << "Jenis" << setw(20) << "Jumlah" << setw(15) << "Keterangan" << endl;
+        cout << "-------------------------------------------------" << endl;
 
-            string jenis;
-            double jumlah;
-            string keterangan;
+        string jenis;
+        double jumlah;
+        string keterangan;
 
-            while (file >> jenis >> jumlah >> ws && getline(file, keterangan)) {
-                cout << setw(15) << jenis << setw(15) << fixed << setprecision(2) << jumlah << setw(30) << keterangan << endl;
-            }
-
-            cout << "=======================================" << endl;
-            file.close();
-        } else {
-            cerr << "Gagal membuka file transaksi.txt" << endl;
+        while (file >> jenis >> jumlah >> ws && getline(file, keterangan, '\n')) {
+            cout << setw(15) << jenis << setw(15) << fixed << setprecision(2) << jumlah << setw(20) << keterangan << endl;
         }
+
+        cout << "=================================================================" << endl;
+        file.close();
+    } else {
+        cerr << "Gagal membuka file transaksi.txt" << endl;
     }
+}
+
 };
 
 int main() {
